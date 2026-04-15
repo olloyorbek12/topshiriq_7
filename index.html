@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="EduCert Chain - Blockchain asosidagi diplom va sertifikatlarni tekshirish tizimi. Web3 texnologiyalari yordamida haqiqiylikni tasdiqlang."
+    />
+    <title>EduCert Chain | Web3 Credential Registry</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="#app">
+          <div class="brand-mark">EC</div>
+          <div>
+            <strong>EduCert Chain</strong>
+            <small>Secure & Verified Credentials</small>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="#issue">Yaratish</a>
+          <a href="#verify">Tekshirish</a>
+          <a href="#share">Ulash</a>
+          <a href="#registry">Reyestr</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <img
+          class="hero-photo"
+          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1800&q=80"
+          alt="Future of Education"
+        />
+        <div class="hero-overlay"></div>
+        <div class="hero-copy">
+          <span class="eyebrow">Powered by Web3 & Blockchain</span>
+          <h1>Diplom va Sertifikatlarni Tasdiqlashning Yangi Davri.</h1>
+          <p>
+            Shaxsiy ma'lumotlaringizni xavfsiz blockchain tarmog'ida saqlang va 
+            bir zumda haqiqiyligini dunyoning istalgan nuqtasidan tasdiqlang.
+          </p>
+          <div class="hero-actions">
+            <button id="connect-wallet" class="button primary">
+              <span>🔌 Wallet Ulash</span>
+            </button>
+            <button id="demo-reset" class="button light">
+              <span>🧹 Demoni Tozalash</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div id="app-alert" class="alert" hidden></div>
+
+      <section class="status-bar">
+        <div>
+          <span>🌐 Holat</span>
+          <strong id="mode-status">Yuklanmoqda...</strong>
+        </div>
+        <div>
+          <span>👤 Hisob</span>
+          <strong id="current-account">-</strong>
+        </div>
+        <div>
+          <span>⛓️ Tarmoq</span>
+          <strong id="network-status">-</strong>
+        </div>
+        <div>
+          <span>📜 Kontrakt</span>
+          <strong id="contract-address">-</strong>
+        </div>
+      </section>
+
+      <section class="metrics">
+        <div class="metric">
+          <span>Talabalar</span>
+          <strong id="student-count">0</strong>
+        </div>
+        <div class="metric">
+          <span>Hujjatlar</span>
+          <strong id="credential-count">0</strong>
+        </div>
+        <div class="metric">
+          <span>Ruxsatlar</span>
+          <strong id="grant-count">0</strong>
+        </div>
+        <div class="metric">
+          <span>Tranzaksiyalar</span>
+          <strong id="tx-count">0</strong>
+        </div>
+      </section>
+
+      <main class="workspace">
+        <section class="panel">
+          <div class="panel-heading">
+            <p>Onboarding</p>
+            <h2>Talaba Profilini Yaratish</h2>
+          </div>
+          <div class="form-grid">
+            <label>
+              Talaba ID
+              <input id="profile-student-id" type="text" value="STU-2026-001" placeholder="Masalan: STU-2026-001" />
+            </label>
+            <label>
+              Talaba Hamyoni
+              <input id="profile-wallet" type="text" placeholder="0x..." />
+            </label>
+            <label>
+              To'liq F.I.Sh.
+              <input id="profile-name" type="text" value="Ali Valiyev" placeholder="Kiriting..." />
+            </label>
+            <label>
+              Yo'nalish
+              <input id="profile-program" type="text" value="Web3 Muhandisligi" placeholder="Kiriting..." />
+            </label>
+            <label class="wide">
+              IPFS Metadata CID
+              <input id="profile-cid" type="text" value="ipfs://bafy-profile-ali" />
+            </label>
+          </div>
+          <button id="register-student" class="button primary">Profilni Saqlash</button>
+          <div id="profile-result" class="output">Tayyor...</div>
+        </section>
+
+        <section id="issue" class="panel">
+          <div class="panel-heading">
+            <p>Minting</p>
+            <h2>Yangi Hujjat Yaratish</h2>
+          </div>
+          <div class="form-grid">
+            <label>
+              Talaba ID
+              <input id="credential-student-id" type="text" value="STU-2026-001" />
+            </label>
+            <label>
+              Hamyon
+              <input id="credential-wallet" type="text" placeholder="0x..." />
+            </label>
+            <label>
+              Hujjat Turi
+              <select id="credential-type">
+                <option value="DIPLOMA">🎓 Diplom</option>
+                <option value="CERTIFICATE">📜 Sertifikat</option>
+              </select>
+            </label>
+            <label>
+              Nomi
+              <input id="credential-title" type="text" value="Full-Stack Developer" />
+            </label>
+            <label>
+              Muassasa
+              <input id="issuer-name" type="text" value="Creative Academy" />
+            </label>
+            <label>
+              GPA / Ball
+              <input id="credential-score" type="number" min="0" max="100" value="98" />
+            </label>
+            <label class="wide">
+              Fayl CID (IPFS)
+              <input id="credential-cid" type="text" value="ipfs://bafy-doc-hash" />
+            </label>
+          </div>
+          <button id="issue-credential" class="button primary">Blockchain'ga Yozish</button>
+          <div class="output">
+             ID: <code id="generated-id">...</code><br>
+             Hash: <code id="generated-hash">...</code><br>
+             <button id="copy-generated" class="button secondary" style="margin-top: 10px;">ID Nusxalash</button>
+          </div>
+        </section>
+
+        <section id="verify" class="panel accent">
+          <div class="panel-heading">
+            <p>Verification</p>
+            <h2>Hujjatni Tekshirish</h2>
+          </div>
+          <label>
+            Credential ID kiriting
+            <input id="verify-id" type="text" placeholder="0x..." />
+          </label>
+          <button id="verify-credential" class="button primary" style="margin-top: 1.5rem; width: 100%;">Tekshirishni Boshlash</button>
+          <div id="verify-result" class="verify-result">Natija kutilmoqda...</div>
+        </section>
+
+        <section id="share" class="panel">
+          <div class="panel-heading">
+            <p>Access Management</p>
+            <h2>Ruxsat Berish</h2>
+          </div>
+          <div class="form-grid">
+            <label>
+              Talaba ID
+              <input id="share-student-id" type="text" value="STU-2026-001" />
+            </label>
+            <label>
+              Qabul Qiluvchi (Viewer)
+              <input id="viewer-wallet" type="text" placeholder="0x..." />
+            </label>
+            <label>
+              Amal qilish muddati (kun)
+              <input id="share-days" type="number" min="1" value="7" />
+            </label>
+            <label>
+              Maqsad
+              <input id="share-purpose" type="text" value="Ishga topshirish" />
+            </label>
+          </div>
+          <button id="grant-access" class="button primary">Ruxsatni Tasdiqlash</button>
+          <div id="share-result" class="output">Tayyor...</div>
+        </section>
+
+        <section id="registry" class="panel registry-panel">
+          <div class="panel-heading" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <p>Explorer</p>
+              <h2>Ochiq Reyestr</h2>
+            </div>
+            <button id="refresh-registry" class="button secondary">Yangilash</button>
+          </div>
+          <input id="registry-search" type="search" placeholder="Hujjat ID yoki Talaba nomi bilan qidiring..." style="width: 100%;" />
+          <div id="registry-list" class="registry-list"></div>
+        </section>
+
+        <section class="panel ledger-panel">
+          <div class="panel-heading" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <p>Transactions</p>
+              <h2>Oxirgi Bloklar</h2>
+            </div>
+            <button id="export-demo" class="button secondary">JSON Eksport</button>
+          </div>
+          <div id="ledger-list" class="ledger-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

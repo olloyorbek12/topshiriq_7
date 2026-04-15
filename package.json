@@ -1,0 +1,31 @@
+{
+  "name": "diploma-blockchain-system",
+  "version": "1.0.0",
+  "description": "Diplom va sertifikatlarni blockchain orqali yaratish, tekshirish va ulash tizimi",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5176",
+    "build": "npm run compile && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4176",
+    "chain": "npx --yes ganache@7.9.2 --chain.chainId 1337 --wallet.totalAccounts 10 --wallet.defaultBalance 1000 --server.host 127.0.0.1 --server.port 8545",
+    "compile": "node scripts/compile.mjs",
+    "deploy:local": "npm run compile && node scripts/deploy.mjs",
+    "deploy:network": "npm run compile && node scripts/deploy.mjs"
+  },
+  "keywords": [
+    "blockchain",
+    "web3",
+    "diploma",
+    "certificate",
+    "education"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "solc": "^0.8.30",
+    "vite": "^6.3.1"
+  }
+}
